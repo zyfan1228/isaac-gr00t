@@ -1,4 +1,4 @@
-# Isaac-GR00T-N1.7-CH-DEV
+# Isaac-GR00T-N1.7-DEV
 
 本项目是基于 Isaac-GR00T 1.7 版本的再开发版本（基于 tag n1.7-release），主要是在 GR00T 1.7 版本的基础上，针对后训练和推理服务部署添加适配，包括但不限于：
 
