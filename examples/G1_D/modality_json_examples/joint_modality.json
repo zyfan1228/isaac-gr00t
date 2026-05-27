@@ -1,0 +1,33 @@
+{
+    "state": {
+        "left_arm": {"original_key": "observation.state", "start": 0, "end": 7, "absolute": true},
+        "right_arm": {"original_key": "observation.state", "start": 7, "end": 14, "absolute": true},
+        "left_gripper": {"original_key": "observation.state", "start": 14, "end": 15, "absolute": true},
+        "right_gripper": {"original_key": "observation.state", "start": 15, "end": 16, "absolute": true}
+    },
+    "action": {
+        "left_arm": {"original_key": "action", "start": 0, "end": 7, "absolute": true},
+        "right_arm": {"original_key": "action", "start": 7, "end": 14, "absolute": true},
+        "left_gripper": {"original_key": "action", "start": 14, "end": 15, "absolute": true},
+        "right_gripper": {"original_key": "action", "start": 15, "end": 16, "absolute": true}
+    },
+    "video": {
+        "left_ego_view": {
+            "original_key": "observation.images.cam_left_high"
+        },
+        "right_ego_view": {
+            "original_key": "observation.images.cam_right_high"
+        },
+        "left_wrist_view": {
+            "original_key": "observation.images.cam_left_wrist"
+        },
+        "right_wrist_view": {
+            "original_key": "observation.images.cam_right_wrist"
+        }
+    },
+    "annotation": {
+        "human.task_description": {
+            "original_key": "task_index"
+        }
+    }
+}

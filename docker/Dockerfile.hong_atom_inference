@@ -1,0 +1,19 @@
+# 从 gr00t n1d7 已有基础镜像构建。若没有请参考 GR00T 官方文档构建
+FROM gr00t:n1d7_latest
+
+WORKDIR /workspace
+
+# 复制 Hong Atom 相关代码到容器的临时路径中
+# 注意两点：
+#     1. 本地 hong_atom 路径正确 
+#     2. hong_atom 三个子目录（3rdparty/hong_protos, python/hong_atom, python/hong_atom_bridge）依赖的 python 版本需降级到 3.10.x，这是 GR00T 的要求
+COPY ./hong_atom/ /tmp/hong_atom/
+
+# 编译并安装 Hong Atom 相关依赖（先 build 再 install，保证依赖以不可变的方式安装到镜像内）
+RUN cd /tmp/hong_atom/3rdparty/hong_protos && uv build && uv pip install ./dist/hong_protos-0.1.0-py3-none-any.whl
+RUN cd /tmp/hong_atom/python/hong_atom && uv build && uv pip install /tmp/hong_atom/python/dist/hong_atom-0.1.0-py3-none-any.whl
+RUN cd /tmp/hong_atom/python/hong_atom_bridge && uv build && uv pip install /tmp/hong_atom/python/dist/hong_atom_bridge-0.1.0-py3-none-any.whl
+RUN rm -rf /tmp/hong_atom
+
+# 安装基础工具（如 curl、wget、vim 等），并清理 apt 缓存以减小镜像体积
+RUN apt-get update && apt-get install -y curl wget vim && rm -rf /var/lib/apt/lists/*
